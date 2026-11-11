@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>西语时态一览表 · 陈述式 / 虚拟式 / 命令式 / 条件式 + 虚拟式用法</title>
+<style>
+:root{
+  --ink:#1B1B1E;--soft:#4A4A50;--faint:#8A8A90;
+  --paper:#F5F5F3;--card:#FFFFFF;--line:#D5D5D2;--hair:#E4E4E0;
+  --head:#2A2A2F;--accent:#3D4450;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;padding:0 16px 56px;background:var(--paper);color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Microsoft YaHei",system-ui,sans-serif;
+  font-size:15px;line-height:1.65}
+.sheet{max-width:1240px;margin:0 auto}
+
+.head{padding:28px 0 14px;border-bottom:1px solid var(--line)}
+.kicker{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+h1{font-family:Georgia,"Songti SC","Noto Serif SC",serif;font-weight:600;font-size:23px;line-height:1.35;margin:0}
+.meta{font-size:12.5px;color:var(--soft);margin:8px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.chip{font-size:11.5px;color:var(--soft);border:1px solid var(--line);background:var(--card);
+  padding:3px 9px;border-radius:999px}
+.viewbtn{font-family:inherit;font-size:11.5px;color:var(--accent);background:var(--card);
+  border:1px solid var(--accent);border-radius:999px;padding:3px 10px;cursor:pointer;line-height:1.4}
+.viewbtn:active{opacity:.7}
+
+.part{margin-top:30px}
+.part-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:0 0 10px}
+.part-no{font-size:11px;letter-spacing:.12em;color:var(--faint)}
+.part h2{font-family:Georgia,"Songti SC",serif;font-size:19px;font-weight:600;margin:0}
+.part-note{font-size:12px;color:var(--soft)}
+
+.tablewrap{border:1px solid var(--line);background:var(--card);overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:separate;border-spacing:0;table-layout:fixed;width:100%;font-size:12.5px}
+thead th{position:sticky;top:0;z-index:3;background:var(--head);color:#FFFFFF;font-weight:600;
+  font-size:11.5px;letter-spacing:.04em;padding:11px 9px;text-align:left;
+  border-right:1px solid #44444B;white-space:nowrap}
+td{padding:11px 9px;vertical-align:top;border-bottom:1px solid var(--hair);
+  border-right:1px solid var(--hair);word-break:break-word;background:var(--card)}
+tbody tr.row:nth-child(even) td:not(.code):not(.tense):not(.comp){background:#FAFAF9}
+tbody tr.row:hover td:not(.code):not(.tense):not(.comp){background:#F2F2F0}
+
+td.code{position:sticky;left:0;z-index:2;text-align:center;vertical-align:middle;color:#FFFFFF;
+  background:#75808F;font-weight:600;letter-spacing:.06em;font-size:12px;
+  border-right:1px solid rgba(0,0,0,.10)}
+td.catA{background:#6E7A8B}td.catB{background:#867C89}td.catC{background:#978D86}td.catD{background:#5A616D}
+
+td.tense{font-weight:600;vertical-align:middle;background:#FFFFFF;font-size:12.5px}
+.tcn{display:block}
+.tes{display:block;font-family:Georgia,"Songti SC",serif;font-style:italic;font-weight:400;
+  font-size:11px;color:#7A7A82;margin-top:3px;letter-spacing:.01em}
+td.comp{vertical-align:middle;white-space:pre-line;color:var(--soft);font-size:11.5px;
+  line-height:1.62;background:#FFFFFF}
+td.no{text-align:center;font-weight:700;color:var(--accent);font-size:11.5px}
+td.use{font-weight:600;font-size:12.5px}
+.es{display:block;font-size:13.5px;line-height:1.5;color:#171719;font-weight:600}
+.zh{display:block;font-size:12px;line-height:1.6;color:var(--soft);margin-top:4px}
+.zh em{font-style:normal;color:var(--accent);margin-right:4px}
+td.note{color:#4C4C52;font-size:11.8px;line-height:1.68}
+
+.old td.use,.old td.note,.old td.comp{color:#6E6E73}
+.old .es{color:#3F4146}
+
+.legend{font-size:12px;color:var(--soft);margin:12px 0 0;display:flex;gap:7px;align-items:center}
+.legend i{width:11px;height:11px;background:#83837F;opacity:.45;display:inline-block}
+.mobhint{display:none;font-size:11.5px;color:#3D4450;background:#F7F7F5;border:1px solid #D5D5D2;
+  padding:8px 10px;line-height:1.6;margin:12px 0 0}
+
+.cards{display:none;margin-top:12px}
+.cards.show{display:block}
+.cgroup{border:1px solid var(--line);background:var(--card);margin-bottom:16px}
+.chead{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--head);color:#F5F4F1}
+.ccode{font-weight:700;font-size:12px;letter-spacing:.08em;background:#FFF;color:#39393D;
+  padding:2px 8px;border-radius:2px}
+.cname{font-weight:600;font-size:14px}
+.ccomp{padding:9px 13px;font-size:11.5px;line-height:1.65;color:var(--soft);background:#F7F7F5;
+  white-space:pre-line;border-bottom:1px solid var(--hair)}
+.citem{display:grid;grid-template-columns:26px 1fr;gap:2px 6px;padding:12px 13px;
+  border-bottom:1px solid var(--hair)}
+.citem:last-child{border-bottom:none}
+.cno{font-size:12px;font-weight:700;color:var(--accent);padding-top:2px}
+.cbody{min-width:0}
+.cuse{font-size:13.5px;font-weight:600;margin-bottom:5px}
+.tese{display:block;font-family:Georgia,"Songti SC",serif;font-style:italic;font-weight:400;
+  font-size:11.5px;color:#7A7A82;margin-top:2px}
+.ces{font-size:15px;line-height:1.5;color:#171719;font-weight:600}
+.czh{font-size:13px;color:var(--soft);margin-top:3px}
+.czh em{font-style:normal;color:var(--accent);margin-right:4px}
+.cnote{font-size:13px;line-height:1.75;color:#4C4C52;margin-top:8px}
+
+footer{margin-top:26px;font-size:11.5px;color:var(--faint);border-top:1px solid var(--line);padding-top:11px}
+
+@media (max-width:820px){
+  body{padding:0 12px 44px}
+  h1{font-size:19px}
+  .part h2{font-size:16px}
+  .part{margin-top:22px}
+  .meta{font-size:12px}
+  thead th{padding:9px 6px;font-size:11px}
+  td{padding:9px 6px}
+  .es{font-size:12.5px}
+  .zh{font-size:11.5px}
+  .tes{font-size:10.5px}
+  td.note{font-size:11px;line-height:1.6}
+  td.code{font-size:11px}
+  .mobhint{display:block}
+  /* 表一：五列都在，横向滚动 */
+  .ftable{table-layout:fixed;width:700px;min-width:700px}
+  .ftable .c-cat{width:64px}.ftable .c-item{width:118px}
+  .ftable .c-form{width:156px}.ftable .c-eg{width:184px}.ftable .c-note{width:178px}
+  /* 表二：隐藏重复的“构成”列，保证例句可读 */
+  .vtable{table-layout:fixed;width:700px;min-width:700px}
+  .vtable .c-comp{width:0}
+  .vtable th.comp,.vtable td.comp{visibility:collapse}
+  .vtable .c-code{width:44px}.vtable .c-tense{width:96px}.vtable .c-no{width:46px}
+  .vtable .c-use{width:120px}.vtable .c-eg{width:196px}.vtable .c-note{width:198px}
+}
+
+@page{size:A4 landscape;margin:9mm}
+@media print{
+  body{padding:0;font-size:9px;background:#fff}
+  .chips,.legend,.viewbtn,.mobhint{display:none}
+  .tablewrap{overflow:visible;border:1px solid #C9C9C5;display:block !important}
+  .cards{display:none !important}
+  table{width:100% !important;min-width:0 !important;font-size:8.4px}
+  .vtable td.comp,.vtable th.comp{visibility:visible !important}
+  thead th{background:#2A2A2F !important;color:#fff !important;position:static;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  td{padding:4px;page-break-inside:avoid}
+  td.code{position:static;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  tr{page-break-inside:avoid}
+  .part{page-break-before:auto}
+}
+
+.ftable .c-cat{width:112px}.ftable .c-item{width:196px}.ftable .c-form{width:282px}
+.ftable .c-eg{width:300px}.ftable .c-note{width:342px}
+.vtable .c-code{width:52px}.vtable .c-tense{width:158px}.vtable .c-comp{width:226px}
+.vtable .c-no{width:48px}.vtable .c-use{width:172px}.vtable .c-eg{width:252px}
+.vtable .c-note{width:318px}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <header class="head">
+    <p class="kicker">Gramática Española · Tiempos y Modos</p>
+    <h1>西语时态一览表</h1>
+    <p class="meta">两张表合成一份：① 时态与语气总览 23 条　② 虚拟式六时态用法 33 条 · 时态列附西文写法</p>
+    <div class="chips">
+      <span class="chip">23 + 33 条</span>
+      <span class="chip">陈述式 9 · 虚拟式 6 · 命令式 5 · 条件句 3</span>
+      <span class="chip">一用法一例句</span>
+      <span class="chip">已逐条校对</span>
+      <button class="viewbtn" id="viewbtn" type="button">切换卡片视图</button>
+    </div>
+  </header>
+
+  <section class="part" id="part1">
+    <div class="part-head">
+      <span class="part-no">01</span>
+      <h2>西语时态一览表</h2>
+      <span class="part-note">陈述式 / 虚拟式 / 命令式 / 条件句 · 23 条</span>
+    </div>
+    <div class="tablewrap">
+      <table class="ftable">
+        <colgroup><col class="c-cat"><col class="c-item"><col class="c-form"><col class="c-eg"><col class="c-note"></colgroup>
+        <thead><tr><th>类别</th><th>项目 / 时态</th><th>形式 / 结构</th><th>例句 / 中文翻译</th><th>说明</th></tr></thead>
+        <tbody>
+<tr class="row"><td class="code catA" rowspan="9">A 陈述式</td><td class="tense"><span class="tcn">现在时</span><span class="tes">Presente de indicativo</span></td><td class="comp">hablo / como / vivo
+不规则：soy, estoy, voy, tengo, hago, sé</td><td class="eg"><span class="es">Trabajo en una oficina.</span><span class="zh"><em>&#8627;</em>我在办公室工作。</span></td><td class="note">现在的事实、习惯性动作或普遍真理；也可表近期将来（Mañana voy al médico）。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">现在完成时</span><span class="tes">Pretérito perfecto de indicativo</span></td><td class="comp">he / has / ha / hemos / habéis / han + p.p.
+例：he hablado, has visto</td><td class="eg"><span class="es">Ya he terminado el informe.</span><span class="zh"><em>&#8627;</em>我已经把报告写完了。</span></td><td class="note">到说话这一刻为止已完成，且与现在有关联（今天、本周、刚发生）。与简单过去时的区别在于是否切断与现在的联系。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">过去未完成时</span><span class="tes">Pretérito imperfecto de indicativo</span></td><td class="comp">hablaba / comía / vivía
+不规则：sabía, iba, veía, tenía, podía</td><td class="eg"><span class="es">No sabía que venías.</span><span class="zh"><em>&#8627;</em>我当时不知道你要来。</span></td><td class="note">过去的持续状态、背景描写、习惯；不强调起止。saber 的未完成时是 sabía，不是 supo。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">简单过去时</span><span class="tes">Pretérito indefinido de indicativo</span></td><td class="comp">hablé / comí / viví
+不规则：supe, hice, fui, dije, puse, llegué</td><td class="eg"><span class="es">Ayer supe la noticia.</span><span class="zh"><em>&#8627;</em>我昨天得知了这个消息。</span></td><td class="note">过去某个具体时点上完整、一次性的动作。supe 是 saber 的简单过去时，意为“得知”，与 sabía（一直知道/当时不知道）分工不同。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">过去完成时</span><span class="tes">Pretérito pluscuamperfecto de indicativo</span></td><td class="comp">había / habías / había / habíamos / habíais / habían + p.p.</td><td class="eg"><span class="es">Ya había comido cuando llegaste.</span><span class="zh"><em>&#8627;</em>你来的时候我已经吃过饭了。</span></td><td class="note">“过去的过去”：先于另一个过去动作完成；常用于叙述背景，末尾可接 cuando llegaste。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">将来未完成时</span><span class="tes">Futuro simple de indicativo</span></td><td class="comp">hablaré / comeré / viviré
+不规则：tendré, podré, diré, haré, saldré, vendré</td><td class="eg"><span class="es">Mañana iré al aeropuerto.</span><span class="zh"><em>&#8627;</em>我明天去机场。</span></td><td class="note">将来会发生的事；也可表推测或让步（Serán las tres. 大概三点了）。日常口语常改用 ir a + 不定式。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">将来完成时</span><span class="tes">Futuro compuesto de indicativo</span></td><td class="comp">habré / habrás / habrá / habremos / habréis / habrán + p.p.</td><td class="eg"><span class="es">Para mañana ya habré terminado.</span><span class="zh"><em>&#8627;</em>到明天我就已经完成了。</span></td><td class="note">到将来某一时点之前已经完成；也可表对过去的推测（Habrá llegado ya. 他大概已经到了）。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">条件式简单时</span><span class="tes">Condicional simple</span></td><td class="comp">hablaría / comería / viviría
+词根同将来时：tendría, podría, diría, haría</td><td class="eg"><span class="es">Si tuviera tiempo, iría contigo.</span><span class="zh"><em>&#8627;</em>我要是有时间，就跟你一起去。</span></td><td class="note">第二类条件句的结果部分；也用于委婉请求（¿Podrías ayudarme?）和过去将来（Dijo que vendría.）。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">条件式复合时</span><span class="tes">Condicional compuesto</span></td><td class="comp">habría / habrías / habría / habríamos / habríais / habrían + p.p.</td><td class="eg"><span class="es">Habría ido, pero estaba enfermo.</span><span class="zh"><em>&#8627;</em>我本来会去的，但当时病了。</span></td><td class="note">第三类条件句的结果部分；表“本会发生却没发生”，也用于对过去的推测（Habría salido ya.）。</td></tr>
+<tr class="row"><td class="code catB" rowspan="6">B 虚拟式</td><td class="tense"><span class="tcn">虚拟式现在时</span><span class="tes">Presente de subjuntivo</span></td><td class="comp">规则：-ar → hable；-er/-ir → coma / viva
+不规则：vaya, sea, haya, sepa, dé, esté, pueda, quiera, venga, tenga, haga, diga, ponga</td><td class="eg"><span class="es">Espero que vengas.</span><span class="zh"><em>&#8627;</em>我希望你来。</span></td><td class="note">愿望、要求、建议、情感、否定判断、目的、将来时间从句都用它；主句现在时触发。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">虚拟式现在完成时</span><span class="tes">Pretérito perfecto de subjuntivo</span></td><td class="comp">haya / hayas / haya / hayamos / hayáis / hayan + p.p.
+例：haya hablado, hayas visto</td><td class="eg"><span class="es">Espero que hayas terminado.</span><span class="zh"><em>&#8627;</em>我希望你已经完成了。</span></td><td class="note">虚拟框架下的“已完成”：到说话时或将来某节点前做完；也用于否定判断中的近期过去（No creo que hayan llegado）。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">虚拟式过去未完成时</span><span class="tes">Pretérito imperfecto de subjuntivo</span></td><td class="comp">规则：hablara / hablase；comiera / comiese；viviera / viviese
+不规则：tuviera/tuviese, fuera/fuese, pudiera/pudiese, supiera/supiese</td><td class="eg"><span class="es">Si tuviera tiempo, viajaría más.</span><span class="zh"><em>&#8627;</em>要是我有时间，我会多旅行。</span></td><td class="note">第二类条件句；过去主句后的从句；低概率愿望；委婉语气（quisiera）；como si 表与现在相反。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">虚拟式过去完成时</span><span class="tes">Pretérito pluscuamperfecto de subjuntivo</span></td><td class="comp">hubiera / hubiese + p.p.
+例：hubiera sabido, hubieses venido</td><td class="eg"><span class="es">Si hubiera sabido, habría venido.</span><span class="zh"><em>&#8627;</em>如果我当时知道，我本会来的。</span></td><td class="note">第三类条件句的 si 从句；过去反事实；对过去的遗憾（Ojalá hubiera aceptado）；como si 表与过去相反。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">虚拟式将来未完成时</span><span class="tes">Futuro simple de subjuntivo</span></td><td class="comp">hablare, comiere, viviere
+不规则：fuere, hiciere, dijere, tuviere, pudiere, viniere</td><td class="eg"><span class="es">Si alguien viniere, avísame.</span><span class="zh"><em>&#8627;</em>若有人来，请告诉我。</span></td><td class="note">现代罕用：法律条文、谚语、古旧条件与时间从句。日常一律换成虚拟式现在时（Si alguien viene, avísame. 用陈述式）。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">虚拟式将来完成时</span><span class="tes">Futuro compuesto de subjuntivo</span></td><td class="comp">hubiere / hubieres / hubiere / hubiéremos / hubiereis / hubieren + p.p.</td><td class="eg"><span class="es">Si alguien hubiere visto algo sospechoso, que lo comunique a la policía.</span><span class="zh"><em>&#8627;</em>若有人看到可疑情况，请通知警方。</span></td><td class="note">现代罕用：法律公文中假设“到那时已经完成”。现代写作 Si alguien ha visto…（si 从句用陈述式）。</td></tr>
+<tr class="row"><td class="code catC" rowspan="5">C 命令式</td><td class="tense"><span class="tcn">肯定命令式（tú）</span><span class="tes">Imperativo afirmativo (tú)</span></td><td class="comp">avisa（= 陈述式第三人称单数）
+不规则：di, haz, ve, ven, pon, sal, sé, ten</td><td class="eg"><span class="es">Avisa a tu madre.</span><span class="zh"><em>&#8627;</em>你去告诉你妈妈。</span></td><td class="note">tú 的肯定命令式与陈述式第三人称单数同形（él avisa → ¡avisa!）；只有少数不规则需单独记。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">肯定命令式（tú）+ 代词 me</span><span class="tes">Imperativo afirmativo (tú) + me</span></td><td class="comp">avisa + me → avísame
+（重音需标出）</td><td class="eg"><span class="es">Avísame cuando llegues.</span><span class="zh"><em>&#8627;</em>你到了就告诉我。</span></td><td class="note">肯定命令式后接 me / te / lo / la 等代词时连写，并在原重音处补写重音符号：avísame ✅，avisame ❌。从句 cuando llegues 仍用虚拟式。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">肯定命令式（usted）</span><span class="tes">Imperativo afirmativo (usted)</span></td><td class="comp">avise（借用虚拟式第三人称单数）
+不规则：vaya, sea, sepa, dé, esté, tenga, haga, diga, ponga</td><td class="eg"><span class="es">Avise a la policía.</span><span class="zh"><em>&#8627;</em>请您通知警方。</span></td><td class="note">usted 命令式借用虚拟式现在时第三人称单数：avise / coma / viva；ir 为 vaya，ser 为 sea。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">肯定命令式（usted）+ 代词 me</span><span class="tes">Imperativo afirmativo (usted) + me</span></td><td class="comp">avise + me → avíseme
+（重音需标出）</td><td class="eg"><span class="es">Avíseme mañana.</span><span class="zh"><em>&#8627;</em>请您明天通知我。</span></td><td class="note">加代词同样连写并加重音：avíseme。否定时代词前置并分开写：No me avise.（请不要通知我）。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">虚拟式现在时 = usted / él 命令式</span><span class="tes">Presente de subjuntivo = imperativo (usted / él)</span></td><td class="comp">comunique</td><td class="eg"><span class="es">Que lo comunique a la policía.</span><span class="zh"><em>&#8627;</em>请（您/他）通知警方。</span></td><td class="note">独立祈愿句：que + 虚拟式，省去主句 deseo/espero。comunique 一身两职——既是虚拟式现在时，也是 usted 命令式。注意 comuniqué 带重音才是“我通知了”（简单过去时）。</td></tr>
+<tr class="row"><td class="code catD" rowspan="3">D 条件句</td><td class="tense"><span class="tcn">第一类：现实可能</span><span class="tes">Condicional tipo 1 · real</span></td><td class="comp">Si + 陈述式现在时，主句陈述式将来 / 现在 / 命令式</td><td class="eg"><span class="es">Si tengo tiempo, iré.</span><span class="zh"><em>&#8627;</em>如果我有时间，我就去。</span></td><td class="note">条件被视为有可能实现。主句也可用现在时（Si tengo tiempo, voy）或命令式（Si tienes tiempo, avísame）。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">第二类：现在 / 未来不太现实</span><span class="tes">Condicional tipo 2 · irreal</span></td><td class="comp">Si + 虚拟式过去未完成时，主句条件式简单时</td><td class="eg"><span class="es">Si tuviera tiempo, iría.</span><span class="zh"><em>&#8627;</em>如果我现在有时间，我就会去（其实没时间）。</span></td><td class="note">与现在事实相反或实现可能性很低。si 从句用 tuviera，主句用 iría，两边都不能配现在时。</td></tr>
+<tr class="row"><td class="tense"><span class="tcn">第三类：过去反事实</span><span class="tes">Condicional tipo 3 · irreal pasado</span></td><td class="comp">Si + hubiera / hubiese + p.p.，主句 habría + p.p.</td><td class="eg"><span class="es">Si hubiera sabido, habría venido.</span><span class="zh"><em>&#8627;</em>如果我当时知道，我本会来的（当时不知道，也没来）。</span></td><td class="note">与过去事实相反。口语中主句也常说 hubiera venido，书面标准写 habría venido。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cards"><section class="cgroup"><div class="chead"><span class="ccode">A 陈述式</span><span class="cname">共 9 项</span></div><div class="citem"><div class="cno">1</div><div class="cbody"><div class="cuse">现在时<span class=tese>Presente de indicativo</span></div><div class="ces">Trabajo en una oficina.</div><div class="czh"><em>&#8627;</em>我在办公室工作。</div><div class="cnote"><b>结构</b>：hablo / como / vivo / 不规则：soy, estoy, voy, tengo, hago, sé<br>现在的事实、习惯性动作或普遍真理；也可表近期将来（Mañana voy al médico）。</div></div></div>
+<div class="citem"><div class="cno">2</div><div class="cbody"><div class="cuse">现在完成时<span class=tese>Pretérito perfecto de indicativo</span></div><div class="ces">Ya he terminado el informe.</div><div class="czh"><em>&#8627;</em>我已经把报告写完了。</div><div class="cnote"><b>结构</b>：he / has / ha / hemos / habéis / han + p.p. / 例：he hablado, has visto<br>到说话这一刻为止已完成，且与现在有关联（今天、本周、刚发生）。与简单过去时的区别在于是否切断与现在的联系。</div></div></div>
+<div class="citem"><div class="cno">3</div><div class="cbody"><div class="cuse">过去未完成时<span class=tese>Pretérito imperfecto de indicativo</span></div><div class="ces">No sabía que venías.</div><div class="czh"><em>&#8627;</em>我当时不知道你要来。</div><div class="cnote"><b>结构</b>：hablaba / comía / vivía / 不规则：sabía, iba, veía, tenía, podía<br>过去的持续状态、背景描写、习惯；不强调起止。saber 的未完成时是 sabía，不是 supo。</div></div></div>
+<div class="citem"><div class="cno">4</div><div class="cbody"><div class="cuse">简单过去时<span class=tese>Pretérito indefinido de indicativo</span></div><div class="ces">Ayer supe la noticia.</div><div class="czh"><em>&#8627;</em>我昨天得知了这个消息。</div><div class="cnote"><b>结构</b>：hablé / comí / viví / 不规则：supe, hice, fui, dije, puse, llegué<br>过去某个具体时点上完整、一次性的动作。supe 是 saber 的简单过去时，意为“得知”，与 sabía（一直知道/当时不知道）分工不同。</div></div></div>
+<div class="citem"><div class="cno">5</div><div class="cbody"><div class="cuse">过去完成时<span class=tese>Pretérito pluscuamperfecto de indicativo</span></div><div class="ces">Ya había comido cuando llegaste.</div><div class="czh"><em>&#8627;</em>你来的时候我已经吃过饭了。</div><div class="cnote"><b>结构</b>：había / habías / había / habíamos / habíais / habían + p.p.<br>“过去的过去”：先于另一个过去动作完成；常用于叙述背景，末尾可接 cuando llegaste。</div></div></div>
+<div class="citem"><div class="cno">6</div><div class="cbody"><div class="cuse">将来未完成时<span class=tese>Futuro simple de indicativo</span></div><div class="ces">Mañana iré al aeropuerto.</div><div class="czh"><em>&#8627;</em>我明天去机场。</div><div class="cnote"><b>结构</b>：hablaré / comeré / viviré / 不规则：tendré, podré, diré, haré, saldré, vendré<br>将来会发生的事；也可表推测或让步（Serán las tres. 大概三点了）。日常口语常改用 ir a + 不定式。</div></div></div>
+<div class="citem"><div class="cno">7</div><div class="cbody"><div class="cuse">将来完成时<span class=tese>Futuro compuesto de indicativo</span></div><div class="ces">Para mañana ya habré terminado.</div><div class="czh"><em>&#8627;</em>到明天我就已经完成了。</div><div class="cnote"><b>结构</b>：habré / habrás / habrá / habremos / habréis / habrán + p.p.<br>到将来某一时点之前已经完成；也可表对过去的推测（Habrá llegado ya. 他大概已经到了）。</div></div></div>
+<div class="citem"><div class="cno">8</div><div class="cbody"><div class="cuse">条件式简单时<span class=tese>Condicional simple</span></div><div class="ces">Si tuviera tiempo, iría contigo.</div><div class="czh"><em>&#8627;</em>我要是有时间，就跟你一起去。</div><div class="cnote"><b>结构</b>：hablaría / comería / viviría / 词根同将来时：tendría, podría, diría, haría<br>第二类条件句的结果部分；也用于委婉请求（¿Podrías ayudarme?）和过去将来（Dijo que vendría.）。</div></div></div>
+<div class="citem"><div class="cno">9</div><div class="cbody"><div class="cuse">条件式复合时<span class=tese>Condicional compuesto</span></div><div class="ces">Habría ido, pero estaba enfermo.</div><div class="czh"><em>&#8627;</em>我本来会去的，但当时病了。</div><div class="cnote"><b>结构</b>：habría / habrías / habría / habríamos / habríais / habrían + p.p.<br>第三类条件句的结果部分；表“本会发生却没发生”，也用于对过去的推测（Habría salido ya.）。</div></div></div></section>
+<section class="cgroup"><div class="chead"><span class="ccode">B 虚拟式</span><span class="cname">共 6 项</span></div><div class="citem"><div class="cno">1</div><div class="cbody"><div class="cuse">虚拟式现在时<span class=tese>Presente de subjuntivo</span></div><div class="ces">Espero que vengas.</div><div class="czh"><em>&#8627;</em>我希望你来。</div><div class="cnote"><b>结构</b>：规则：-ar → hable；-er/-ir → coma / viva / 不规则：vaya, sea, haya, sepa, dé, esté, pueda, quiera, venga, tenga, haga, diga, ponga<br>愿望、要求、建议、情感、否定判断、目的、将来时间从句都用它；主句现在时触发。</div></div></div>
+<div class="citem"><div class="cno">2</div><div class="cbody"><div class="cuse">虚拟式现在完成时<span class=tese>Pretérito perfecto de subjuntivo</span></div><div class="ces">Espero que hayas terminado.</div><div class="czh"><em>&#8627;</em>我希望你已经完成了。</div><div class="cnote"><b>结构</b>：haya / hayas / haya / hayamos / hayáis / hayan + p.p. / 例：haya hablado, hayas visto<br>虚拟框架下的“已完成”：到说话时或将来某节点前做完；也用于否定判断中的近期过去（No creo que hayan llegado）。</div></div></div>
+<div class="citem"><div class="cno">3</div><div class="cbody"><div class="cuse">虚拟式过去未完成时<span class=tese>Pretérito imperfecto de subjuntivo</span></div><div class="ces">Si tuviera tiempo, viajaría más.</div><div class="czh"><em>&#8627;</em>要是我有时间，我会多旅行。</div><div class="cnote"><b>结构</b>：规则：hablara / hablase；comiera / comiese；viviera / viviese / 不规则：tuviera/tuviese, fuera/fuese, pudiera/pudiese, supiera/supiese<br>第二类条件句；过去主句后的从句；低概率愿望；委婉语气（quisiera）；como si 表与现在相反。</div></div></div>
+<div class="citem"><div class="cno">4</div><div class="cbody"><div class="cuse">虚拟式过去完成时<span class=tese>Pretérito pluscuamperfecto de subjuntivo</span></div><div class="ces">Si hubiera sabido, habría venido.</div><div class="czh"><em>&#8627;</em>如果我当时知道，我本会来的。</div><div class="cnote"><b>结构</b>：hubiera / hubiese + p.p. / 例：hubiera sabido, hubieses venido<br>第三类条件句的 si 从句；过去反事实；对过去的遗憾（Ojalá hubiera aceptado）；como si 表与过去相反。</div></div></div>
+<div class="citem"><div class="cno">5</div><div class="cbody"><div class="cuse">虚拟式将来未完成时<span class=tese>Futuro simple de subjuntivo</span></div><div class="ces">Si alguien viniere, avísame.</div><div class="czh"><em>&#8627;</em>若有人来，请告诉我。</div><div class="cnote"><b>结构</b>：hablare, comiere, viviere / 不规则：fuere, hiciere, dijere, tuviere, pudiere, viniere<br>现代罕用：法律条文、谚语、古旧条件与时间从句。日常一律换成虚拟式现在时（Si alguien viene, avísame. 用陈述式）。</div></div></div>
+<div class="citem"><div class="cno">6</div><div class="cbody"><div class="cuse">虚拟式将来完成时<span class=tese>Futuro compuesto de subjuntivo</span></div><div class="ces">Si alguien hubiere visto algo sospechoso, que lo comunique a la policía.</div><div class="czh"><em>&#8627;</em>若有人看到可疑情况，请通知警方。</div><div class="cnote"><b>结构</b>：hubiere / hubieres / hubiere / hubiéremos / hubiereis / hubieren + p.p.<br>现代罕用：法律公文中假设“到那时已经完成”。现代写作 Si alguien ha visto…（si 从句用陈述式）。</div></div></div></section>
+<section class="cgroup"><div class="chead"><span class="ccode">C 命令式</span><span class="cname">共 5 项</span></div><div class="citem"><div class="cno">1</div><div class="cbody"><div class="cuse">肯定命令式（tú）<span class=tese>Imperativo afirmativo (tú)</span></div><div class="ces">Avisa a tu madre.</div><div class="czh"><em>&#8627;</em>你去告诉你妈妈。</div><div class="cnote"><b>结构</b>：avisa（= 陈述式第三人称单数） / 不规则：di, haz, ve, ven, pon, sal, sé, ten<br>tú 的肯定命令式与陈述式第三人称单数同形（él avisa → ¡avisa!）；只有少数不规则需单独记。</div></div></div>
+<div class="citem"><div class="cno">2</div><div class="cbody"><div class="cuse">肯定命令式（tú）+ 代词 me<span class=tese>Imperativo afirmativo (tú) + me</span></div><div class="ces">Avísame cuando llegues.</div><div class="czh"><em>&#8627;</em>你到了就告诉我。</div><div class="cnote"><b>结构</b>：avisa + me → avísame / （重音需标出）<br>肯定命令式后接 me / te / lo / la 等代词时连写，并在原重音处补写重音符号：avísame ✅，avisame ❌。从句 cuando llegues 仍用虚拟式。</div></div></div>
+<div class="citem"><div class="cno">3</div><div class="cbody"><div class="cuse">肯定命令式（usted）<span class=tese>Imperativo afirmativo (usted)</span></div><div class="ces">Avise a la policía.</div><div class="czh"><em>&#8627;</em>请您通知警方。</div><div class="cnote"><b>结构</b>：avise（借用虚拟式第三人称单数） / 不规则：vaya, sea, sepa, dé, esté, tenga, haga, diga, ponga<br>usted 命令式借用虚拟式现在时第三人称单数：avise / coma / viva；ir 为 vaya，ser 为 sea。</div></div></div>
+<div class="citem"><div class="cno">4</div><div class="cbody"><div class="cuse">肯定命令式（usted）+ 代词 me<span class=tese>Imperativo afirmativo (usted) + me</span></div><div class="ces">Avíseme mañana.</div><div class="czh"><em>&#8627;</em>请您明天通知我。</div><div class="cnote"><b>结构</b>：avise + me → avíseme / （重音需标出）<br>加代词同样连写并加重音：avíseme。否定时代词前置并分开写：No me avise.（请不要通知我）。</div></div></div>
+<div class="citem"><div class="cno">5</div><div class="cbody"><div class="cuse">虚拟式现在时 = usted / él 命令式<span class=tese>Presente de subjuntivo = imperativo (usted / él)</span></div><div class="ces">Que lo comunique a la policía.</div><div class="czh"><em>&#8627;</em>请（您/他）通知警方。</div><div class="cnote"><b>结构</b>：comunique<br>独立祈愿句：que + 虚拟式，省去主句 deseo/espero。comunique 一身两职——既是虚拟式现在时，也是 usted 命令式。注意 comuniqué 带重音才是“我通知了”（简单过去时）。</div></div></div></section>
+<section class="cgroup"><div class="chead"><span class="ccode">D 条件句</span><span class="cname">共 3 项</span></div><div class="citem"><div class="cno">1</div><div class="cbody"><div class="cuse">第一类：现实可能<span class=tese>Condicional tipo 1 · real</span></div><div class="ces">Si tengo tiempo, iré.</div><div class="czh"><em>&#8627;</em>如果我有时间，我就去。</div><div class="cnote"><b>结构</b>：Si + 陈述式现在时，主句陈述式将来 / 现在 / 命令式<br>条件被视为有可能实现。主句也可用现在时（Si tengo tiempo, voy）或命令式（Si tienes tiempo, avísame）。</div></div></div>
+<div class="citem"><div class="cno">2</div><div class="cbody"><div class="cuse">第二类：现在 / 未来不太现实<span class=tese>Condicional tipo 2 · irreal</span></div><div class="ces">Si tuviera tiempo, iría.</div><div class="czh"><em>&#8627;</em>如果我现在有时间，我就会去（其实没时间）。</div><div class="cnote"><b>结构</b>：Si + 虚拟式过去未完成时，主句条件式简单时<br>与现在事实相反或实现可能性很低。si 从句用 tuviera，主句用 iría，两边都不能配现在时。</div></div></div>
+<div class="citem"><div class="cno">3</div><div class="cbody"><div class="cuse">第三类：过去反事实<span class=tese>Condicional tipo 3 · irreal pasado</span></div><div class="ces">Si hubiera sabido, habría venido.</div><div class="czh"><em>&#8627;</em>如果我当时知道，我本会来的（当时不知道，也没来）。</div><div class="cnote"><b>结构</b>：Si + hubiera / hubiese + p.p.，主句 habría + p.p.<br>与过去事实相反。口语中主句也常说 hubiera venido，书面标准写 habría venido。</div></div></div></section></div>
+    <p class="legend"><i></i>各类别的方括号色块：A 雾蓝灰 · B 藕灰 · C 陶灰 · D 深烟灰；三类条件句的 si 从句边界不通用。</p>
+  </section>
+
+  <section class="part" id="part2">
+    <div class="part-head">
+      <span class="part-no">02</span>
+      <h2>虚拟时态用法一览表</h2>
+      <span class="part-note">虚拟式 B1–B6 · 33 条</span>
+    </div>
+    <p class="mobhint">手机上为保证例句可读，本表隐藏了重复的“构成”列；完整构成可切换卡片视图查看。</p>
+    <div class="tablewrap">
+      <table class="vtable">
+        <colgroup><col class="c-code"><col class="c-tense"><col class="c-comp"><col class="c-no"><col class="c-use"><col class="c-eg"><col class="c-note"></colgroup>
+        <thead><tr><th>编号</th><th>时态</th><th class="comp">构成</th><th>用法号</th><th>用法</th><th>例句 / 中文翻译</th><th>例句说明</th></tr></thead>
+        <tbody>
+<tr class="row"><td class="code" rowspan="7">B1</td><td class="tense" rowspan="7"><span class="tcn">虚拟式现在时</span><span class="tes">Presente de subjuntivo</span></td><td class="comp" rowspan="7">规则：-ar → hable；-er/-ir → coma / viva
+不规则：vaya, sea, haya, sepa, dé, esté, pueda, quiera, venga, tenga, haga, diga, ponga</td><td class="no">①</td><td class="use">愿望、请求、建议、命令</td><td class="eg"><span class="es">Espero que vengas pronto.</span><span class="zh"><em>&#8627;</em>我希望你早点来。</span></td><td class="note">esperar que 是最典型的虚拟式触发结构；vengas 指尚未发生、只存在于说话人愿望中的动作。若改用陈述式 vendrás，就把“来”当成已确定的事实预告，语气从愿望变成断言。同类动词：querer / pedir / rogar / sugerir / aconsejar / mandar que。</td></tr>
+<tr class="row"><td class="no">②</td><td class="use">情感、评价</td><td class="eg"><span class="es">Me alegra que estés aquí.</span><span class="zh"><em>&#8627;</em>我很高兴你在这儿。</span></td><td class="note">情感、评价类词语（alegrar, gustar, encantar, molestar, sorprender, es bueno / importante / una pena que…）引导的从句一律用虚拟式，因为从句内容是说话人的主观评价而非客观陈述。estés 是 estar 的虚拟式，描述引发情感的现实状态。</td></tr>
+<tr class="row"><td class="no">③</td><td class="use">怀疑、否定判断、可能性</td><td class="eg"><span class="es">No creo que sea verdad.</span><span class="zh"><em>&#8627;</em>我不认为这是真的。</span></td><td class="note">creer / pensar / parecer 在否定或疑问时失去“断言”力量，从句改用虚拟式（sea 是 ser）。对比肯定句 Creo que es verdad.（用陈述式）。同类：No es cierto / No estoy seguro de que / Es posible que / Puede que / Quizás。</td></tr>
+<tr class="row"><td class="no">④</td><td class="use">目的：para que / a fin de que</td><td class="eg"><span class="es">Te lo digo para que lo sepas.</span><span class="zh"><em>&#8627;</em>我告诉你是为了让你知道。</span></td><td class="note">para que / a fin de que 引出的是“目的”，本身即要求虚拟式；又因主句主语是“我”、从句主语是“你”，不能用 para + 不定式（para saberlo 只在同主语时用）。sepas 是 saber 的虚拟式。</td></tr>
+<tr class="row"><td class="no">⑤</td><td class="use">时间从句指将来未发生</td><td class="eg"><span class="es">Cuando llegues, avísame.</span><span class="zh"><em>&#8627;</em>你到了就告诉我。</span></td><td class="note">cuando 引导的从句指将来、尚未发生且不确定的事件时用虚拟式（llegues 是 llegar）。若指习惯或已发生的事则用陈述式：Cuando llega, siempre avisa.（他每次到都会说一声）。同类连词：en cuanto, mientras, hasta que, antes de que, después de que, tan pronto como。</td></tr>
+<tr class="row"><td class="no">⑥</td><td class="use">让步：aunque / por más que（不确定）</td><td class="eg"><span class="es">Aunque llueva, saldremos.</span><span class="zh"><em>&#8627;</em>即使下雨我们也出去。</span></td><td class="note">aunque + 虚拟式表示“障碍可能存在、但说话人不确定或不当它是事实”，语气是“哪怕真下”。若已知事实（确实在下雨）则用陈述式 Aunque llueve, saldremos.（虽然在下雨，我们还是出去）。por más que / por mucho que 同理。</td></tr>
+<tr class="row"><td class="no">⑦</td><td class="use">独立句愿望、祈使</td><td class="eg"><span class="es">¡Que tengas suerte!</span><span class="zh"><em>&#8627;</em>祝你好运！</span></td><td class="note">省略主句（deseo / espero / ojalá），单用 que + 虚拟式构成独立祝愿句，句首常有 ¡，书面可加感叹号。同类型：¡Que te vaya bien!（一切顺利）、¡Que descanses!（好好休息）、¡Que aproveche!（多吃点）。注意此处 que 不是关系代词，而是引出愿望的连词。</td></tr>
+<tr class="row"><td class="code" rowspan="5">B2</td><td class="tense" rowspan="5"><span class="tcn">虚拟式现在完成时</span><span class="tes">Pretérito perfecto de subjuntivo</span></td><td class="comp" rowspan="5">haya / hayas / haya / hayamos / hayáis / hayan + p.p.
+例：haya hablado, hayas visto</td><td class="no">①</td><td class="use">主句现在/将来/命令，从句动作已完成</td><td class="eg"><span class="es">Espero que hayas terminado el informe.</span><span class="zh"><em>&#8627;</em>我希望你已经把报告写完了。</span></td><td class="note">主句是现在时 espero，触发虚拟式；从句用 haya + p.p.（hayas terminado）表示“到说话这一刻已经完成”。与 B1 的 Espero que termines（希望你去完成）相比，这里说的是完成结果，且说话人不知道是否真的完成。</td></tr>
+<tr class="row"><td class="no">②</td><td class="use">将来某一时点之前完成</td><td class="eg"><span class="es">Cuando hayas terminado, avísame.</span><span class="zh"><em>&#8627;</em>你完成之后告诉我。</span></td><td class="note">cuando 指将来仍需虚拟式；完成体 hayas terminado 强调“到那个时候动作已完成”，从而明确先后。也可说 Cuando termines，但那只是指出时点、不强调“已完成”，属省略完成义的说法，不是等义替代。</td></tr>
+<tr class="row"><td class="no">③</td><td class="use">对近期过去的怀疑、否定判断</td><td class="eg"><span class="es">No creo que hayan llegado todavía.</span><span class="zh"><em>&#8627;</em>我不觉得他们已经到了。</span></td><td class="note">否定判断 no creo que 触发虚拟式；hayan llegado 表示动作截至现在可能已完成，但说话人不确认。改用陈述式 No creo que han llegado 只在加勒比等部分地区口语中可见，标准语法仍要求虚拟式。</td></tr>
+<tr class="row"><td class="no">④</td><td class="use">情感/评价，针对已完成的事</td><td class="eg"><span class="es">Me alegra que hayas encontrado trabajo.</span><span class="zh"><em>&#8627;</em>我很高兴你找到了工作。</span></td><td class="note">情感触发虚拟式；hayas encontrado 表明“找到工作”是已发生的结果。若改成 Me alegra que encuentres trabajo，情感就转为对“将来能找到”的期待，且完成义丢失——不是语义“完全不同”，而是视角改变。</td></tr>
+<tr class="row"><td class="no">⑤</td><td class="use">愿望：ojalá（事情已发生）</td><td class="eg"><span class="es">Ojalá hayamos acertado.</span><span class="zh"><em>&#8627;</em>但愿我们判断对了。</span></td><td class="note">ojalá 后固定虚拟式；用完成体 hayamos acertado 指“结果已经产生，只是还不知道好坏”，是对既成结果的不确定期盼。对比 Ojalá acertemos（尚未决定、盼将来做对）。</td></tr>
+<tr class="row"><td class="code" rowspan="6">B3</td><td class="tense" rowspan="6"><span class="tcn">虚拟式过去未完成时</span><span class="tes">Pretérito imperfecto de subjuntivo</span></td><td class="comp" rowspan="6">规则：-ar → hablara / hablase；-er/-ir → comiera / comiese, viviera / viviese（两套词尾同义）
+不规则：fuera/fuese, tuviera/tuviese, pudiera/pudiese, supiera/supiese, hiciera/hiciese, dijera/dijese, viniera/viniese, pusiera/pusiese</td><td class="no">①</td><td class="use">主句为过去时，从句表愿望、要求、怀疑</td><td class="eg"><span class="es">Quería que vinieras a la fiesta.</span><span class="zh"><em>&#8627;</em>我当时希望你来参加聚会。</span></td><td class="note">主句用过去时（quería），从句随之用过去未完成虚拟（vinieras），表示“在当时那个时间点，这个愿望还没实现”。-ra 在这里不表示“过去的过去”，只是与过去主句呼应。同类主句：esperaba / pedía / dudaba / quería。</td></tr>
+<tr class="row"><td class="no">②</td><td class="use">第二类条件句：现在或未来非现实假设</td><td class="eg"><span class="es">Si tuviera tiempo, viajaría más.</span><span class="zh"><em>&#8627;</em>要是我有时间，我会多旅行。</span></td><td class="note">事实是“现在没有时间”，因此 si 从句用过去未完成虚拟 tuviera，主句用简单条件式 viajaría（不是虚拟式）。这是与现在事实相反的假设，不能换成 si tengo tiempo（那表示真有可能）。</td></tr>
+<tr class="row"><td class="no">③</td><td class="use">愿望：ojalá（可能性低）</td><td class="eg"><span class="es">Ojalá lloviera mañana.</span><span class="zh"><em>&#8627;</em>但愿明天下雨。</span></td><td class="note">ojalá + 过去未完成虚拟，表示说话人认为实现可能性很低（明天下雨的希望不大），带一点无奈。对比 Ojalá llueva mañana 语气更乐观、更中性。</td></tr>
+<tr class="row"><td class="no">④</td><td class="use">委婉、礼貌</td><td class="eg"><span class="es">Quisiera hacerle una pregunta.</span><span class="zh"><em>&#8627;</em>我想向您请教一个问题。</span></td><td class="note">quisiera 是 querer 的过去未完成虚拟，用作委婉的客套形式，比 quiero 更含蓄、更有距离感；同类 pudiera / debiera / hubiera querido。对长辈、客户、面试场合常用。</td></tr>
+<tr class="row"><td class="no">⑤</td><td class="use">como si + 虚拟过去未完成（与现在事实相反）</td><td class="eg"><span class="es">Habla como si fuera el jefe.</span><span class="zh"><em>&#8627;</em>他说话的口气像是老板。</span></td><td class="note">como si 后不能用陈述式；与现在事实相反用过去未完成虚拟（fuera 是 ser），意为“他其实不是老板”。这里的过去虚拟在语义上是“现在非现实”，不是过去时。</td></tr>
+<tr class="row"><td class="no">⑥</td><td class="use">主句过去、先行词不确定的关系从句</td><td class="eg"><span class="es">Buscaba a alguien que hablara inglés.</span><span class="zh"><em>&#8627;</em>我当时在找一个会说英语的人。</span></td><td class="note">主句为过去时，且先行词 alguien 不确定、可能根本不存在，关系从句用虚拟式 hablara。若人已确定则用陈述式：Buscaba a Juan, que hablaba inglés.（我在找胡安，他会英语）。同类先行词：un libro que…, nada que…, alguien que…</td></tr>
+<tr class="row"><td class="code" rowspan="5">B4</td><td class="tense" rowspan="5"><span class="tcn">虚拟式过去完成时</span><span class="tes">Pretérito pluscuamperfecto de subjuntivo</span></td><td class="comp" rowspan="5">hubiera / hubiese + p.p.（hubiera = hubiese）
+例：hubiera sabido, hubieses venido, hubiéramos terminado</td><td class="no">①</td><td class="use">过去主句后从句，动作先于主句完成</td><td class="eg"><span class="es">No creía que hubieras terminado tan pronto.</span><span class="zh"><em>&#8627;</em>我当时不相信你那么快就已经做完了。</span></td><td class="note">hubieras terminado 是“过去的过去”：完成早于 no creía 那个时间点。若换成 terminara（B3），只表示“当时还没做完”，不含“已经完成”的意味，两句话义不同。</td></tr>
+<tr class="row"><td class="no">②</td><td class="use">第三类条件句：过去反事实</td><td class="eg"><span class="es">Si hubiera sabido la verdad, habría venido.</span><span class="zh"><em>&#8627;</em>我要是当时知道真相，就来了。</span></td><td class="note">与过去事实相反（当时并不知道，因此没来）：si 从句用 hubiera + p.p.，主句用条件完成式 habría + p.p.。拉丁美洲口语常用 Si hubiera sabido… hubiera venido（两个都用 -ra 形式），书面标准仍写 habría venido。</td></tr>
+<tr class="row"><td class="no">③</td><td class="use">未实现的愿望、遗憾：ojalá</td><td class="eg"><span class="es">Ojalá hubiera aceptado la oferta.</span><span class="zh"><em>&#8627;</em>真希望我当时接受了那个提议。</span></td><td class="note">ojalá + 过去完成虚拟，针对已经无法更改的过去选择表达遗憾（其实当时拒绝了）。对比 Ojalá acepte（盼将来接受）、Ojalá aceptara（对现在/将来低可能性期盼）。</td></tr>
+<tr class="row"><td class="no">④</td><td class="use">como si + 虚拟过去完成（与过去事实相反）</td><td class="eg"><span class="es">Habló como si hubiera estado allí.</span><span class="zh"><em>&#8627;</em>他说得好像自己当时在场。</span></td><td class="note">主句是过去时 habló，como si 后用过完成虚拟 hubiera estado，表示“他当时其实不在场”（事先到过、已离开）。若改用 estuviera，只表示“在场”与主句动作同时，无法表达“事先已完成”，也容易被读成与现在事实相反。</td></tr>
+<tr class="row"><td class="no">⑤</td><td class="use">情感、遗憾：针对过去已发生/未实现的事</td><td class="eg"><span class="es">Lamento que no hubieras podido venir.</span><span class="zh"><em>&#8627;</em>我很遗憾你当时没能来。</span></td><td class="note">lamento que 触发虚拟式；hubieras podido 指明“过去那次没能来”。若事情刚过去不久，也常用现在完成虚拟 Lamento que no hayas podido venir；两者都指已过去的事，只是时间视角不同。</td></tr>
+<tr class="row old"><td class="code" rowspan="5">B5</td><td class="tense" rowspan="5"><span class="tcn">虚拟式将来未完成时</span><span class="tes">Futuro simple de subjuntivo</span></td><td class="comp" rowspan="5">hablare, comiere, viviere
+不规则：fuere, hiciere, dijere, tuviere, pudiere, quisiere, viniere, supiere, pusiere
+现代罕用</td><td class="no">①</td><td class="use">法律、公文、规章</td><td class="eg"><span class="es">El que infringiere la ley será sancionado.</span><span class="zh"><em>&#8627;</em>凡违反法律者将受处罚。</span></td><td class="note">法律条文对“假设将来发生的违法行为”固定用 -re 形式（infringiere 是 infringir），主句用将来时。现代文本一般改写为 El que infrinja la ley（B1）。</td></tr>
+<tr class="row old"><td class="no">②</td><td class="use">古旧、文学的条件从句</td><td class="eg"><span class="es">Si alguien viniere, avísame.</span><span class="zh"><em>&#8627;</em>若有人来，请告诉我。</span></td><td class="note">古旧/正式条件句用将来虚拟 viniere（venir）；现代规范说法是 Si alguien viene, avísame.（陈述式现在时），虚拟式不再出现在真实条件句的 si 从句里。</td></tr>
+<tr class="row old"><td class="no">③</td><td class="use">谚语、固定表达</td><td class="eg"><span class="es">Donde fueres, haz lo que vieres.</span><span class="zh"><em>&#8627;</em>入乡随俗。</span></td><td class="note">fueres 是 ir 的将来虚拟，vieres 是 ver 的将来虚拟。谚语固定沿用古体形式，不能改成现代时态，否则失去谚语的原貌。</td></tr>
+<tr class="row old"><td class="no">④</td><td class="use">古体时间、让步从句</td><td class="eg"><span class="es">Cuando llegare el momento, lo sabrás.</span><span class="zh"><em>&#8627;</em>时机到来时你自会知道。</span></td><td class="note">古体 cuando 从句用将来虚拟 llegare（llegar）；现代说法 Cuando llegue el momento, lo sabrás（B1）。多见于古典文学、演讲、法律文本。</td></tr>
+<tr class="row old"><td class="no">⑤</td><td class="use">固定表达：sea lo que fuere</td><td class="eg"><span class="es">Sea lo que fuere, no cambiaré de idea.</span><span class="zh"><em>&#8627;</em>不管怎样，我都不会改变主意。</span></td><td class="note">fuere 是 ser 的将来虚拟，sea lo que fuere 为固定短语，意为“无论如何、不管是什么”。现代等义说法是 sea lo que sea（用 B1 虚拟式）。</td></tr>
+<tr class="row old"><td class="code" rowspan="5">B6</td><td class="tense" rowspan="5"><span class="tcn">虚拟式将来完成时</span><span class="tes">Futuro compuesto de subjuntivo</span></td><td class="comp" rowspan="5">hubiere / hubieres / hubiere / hubiéremos / hubiereis / hubieren + p.p.
+例：hubiere visto, hubieres terminado
+现代罕用</td><td class="no">①</td><td class="use">法律、公文：假设将来某时已经发生</td><td class="eg"><span class="es">Si alguien hubiere visto algo sospechoso, que lo comunique a la policía.</span><span class="zh"><em>&#8627;</em>若有人看到可疑情况，请通知警方。</span></td><td class="note">正式法律条件句用 hubiere + p.p.（hubiere visto），假设“到那时已经看见”。现代说法 Si alguien ha visto algo sospechoso…：si 从句用陈述式，不能写成 haya visto。</td></tr>
+<tr class="row old"><td class="no">②</td><td class="use">正式条件、时间从句：到某时已经完成</td><td class="eg"><span class="es">Una vez que hubiere sido aprobada la ley, entrará en vigor.</span><span class="zh"><em>&#8627;</em>法律一经通过，即生效。</span></td><td class="note">una vez que 后用过完成虚拟被动 hubiere sido aprobada，表示“到通过那一刻已完成”。现代写法：Una vez que haya sido aprobada（B2）。</td></tr>
+<tr class="row old"><td class="no">③</td><td class="use">古旧、文学表达：将来之前已完成</td><td class="eg"><span class="es">Cuando hubieres leído el documento, firmarás.</span><span class="zh"><em>&#8627;</em>你读完文件之后签字。</span></td><td class="note">古旧书面语用 hubieres leído（tú 形式），强调“读完”先于“签字”。现代说法 Cuando hayas leído el documento, firmarás。</td></tr>
+<tr class="row old"><td class="no">④</td><td class="use">假设将来某时之前完成</td><td class="eg"><span class="es">Si para entonces hubiere terminado el trabajo, te lo enviaré.</span><span class="zh"><em>&#8627;</em>如果到那时我已经完成了工作，我会发给你。</span></td><td class="note">正式书面条件句，hubiere terminado 指“到那时之前完成”。现代说法 Si para entonces he terminado el trabajo…（陈述式现在完成）；si 从句不能用 haya terminado。</td></tr>
+<tr class="row old"><td class="no">⑤</td><td class="use">法律公文：凡已经实施某行为者</td><td class="eg"><span class="es">El que hubiere cometido el delito será juzgado.</span><span class="zh"><em>&#8627;</em>凡已经实施犯罪者将受审判。</span></td><td class="note">法律文本用 hubiere cometido 指“行为已经实施完毕”，与 B5 的 infringiere（行为尚未发生）形成对照。现代通常改为 El que haya cometido el delito（B2）。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="cards"><section class="cgroup"><div class="chead"><span class="ccode">B1</span><span class="cname">虚拟式现在时 · Presente de subjuntivo</span></div><div class="ccomp">规则：-ar → hable；-er/-ir → coma / viva
+不规则：vaya, sea, haya, sepa, dé, esté, pueda, quiera, venga, tenga, haga, diga, ponga</div>
+<div class="citem"><div class="cno">①</div><div class="cbody"><div class="cuse">愿望、请求、建议、命令</div><div class="ces">Espero que vengas pronto.</div><div class="czh"><em>&#8627;</em>我希望你早点来。</div><div class="cnote">esperar que 是最典型的虚拟式触发结构；vengas 指尚未发生、只存在于说话人愿望中的动作。若改用陈述式 vendrás，就把“来”当成已确定的事实预告，语气从愿望变成断言。同类动词：querer / pedir / rogar / sugerir / aconsejar / mandar que。</div></div></div>
+<div class="citem"><div class="cno">②</div><div class="cbody"><div class="cuse">情感、评价</div><div class="ces">Me alegra que estés aquí.</div><div class="czh"><em>&#8627;</em>我很高兴你在这儿。</div><div class="cnote">情感、评价类词语（alegrar, gustar, encantar, molestar, sorprender, es bueno / importante / una pena que…）引导的从句一律用虚拟式，因为从句内容是说话人的主观评价而非客观陈述。estés 是 estar 的虚拟式，描述引发情感的现实状态。</div></div></div>
+<div class="citem"><div class="cno">③</div><div class="cbody"><div class="cuse">怀疑、否定判断、可能性</div><div class="ces">No creo que sea verdad.</div><div class="czh"><em>&#8627;</em>我不认为这是真的。</div><div class="cnote">creer / pensar / parecer 在否定或疑问时失去“断言”力量，从句改用虚拟式（sea 是 ser）。对比肯定句 Creo que es verdad.（用陈述式）。同类：No es cierto / No estoy seguro de que / Es posible que / Puede que / Quizás。</div></div></div>
+<div class="citem"><div class="cno">④</div><div class="cbody"><div class="cuse">目的：para que / a fin de que</div><div class="ces">Te lo digo para que lo sepas.</div><div class="czh"><em>&#8627;</em>我告诉你是为了让你知道。</div><div class="cnote">para que / a fin de que 引出的是“目的”，本身即要求虚拟式；又因主句主语是“我”、从句主语是“你”，不能用 para + 不定式（para saberlo 只在同主语时用）。sepas 是 saber 的虚拟式。</div></div></div>
+<div class="citem"><div class="cno">⑤</div><div class="cbody"><div class="cuse">时间从句指将来未发生</div><div class="ces">Cuando llegues, avísame.</div><div class="czh"><em>&#8627;</em>你到了就告诉我。</div><div class="cnote">cuando 引导的从句指将来、尚未发生且不确定的事件时用虚拟式（llegues 是 llegar）。若指习惯或已发生的事则用陈述式：Cuando llega, siempre avisa.（他每次到都会说一声）。同类连词：en cuanto, mientras, hasta que, antes de que, después de que, tan pronto como。</div></div></div>
+<div class="citem"><div class="cno">⑥</div><div class="cbody"><div class="cuse">让步：aunque / por más que（不确定）</div><div class="ces">Aunque llueva, saldremos.</div><div class="czh"><em>&#8627;</em>即使下雨我们也出去。</div><div class="cnote">aunque + 虚拟式表示“障碍可能存在、但说话人不确定或不当它是事实”，语气是“哪怕真下”。若已知事实（确实在下雨）则用陈述式 Aunque llueve, saldremos.（虽然在下雨，我们还是出去）。por más que / por mucho que 同理。</div></div></div>
+<div class="citem"><div class="cno">⑦</div><div class="cbody"><div class="cuse">独立句愿望、祈使</div><div class="ces">¡Que tengas suerte!</div><div class="czh"><em>&#8627;</em>祝你好运！</div><div class="cnote">省略主句（deseo / espero / ojalá），单用 que + 虚拟式构成独立祝愿句，句首常有 ¡，书面可加感叹号。同类型：¡Que te vaya bien!（一切顺利）、¡Que descanses!（好好休息）、¡Que aproveche!（多吃点）。注意此处 que 不是关系代词，而是引出愿望的连词。</div></div></div>
+</section>
+<section class="cgroup"><div class="chead"><span class="ccode">B2</span><span class="cname">虚拟式现在完成时 · Pretérito perfecto de subjuntivo</span></div><div class="ccomp">haya / hayas / haya / hayamos / hayáis / hayan + p.p.
+例：haya hablado, hayas visto</div>
+<div class="citem"><div class="cno">①</div><div class="cbody"><div class="cuse">主句现在/将来/命令，从句动作已完成</div><div class="ces">Espero que hayas terminado el informe.</div><div class="czh"><em>&#8627;</em>我希望你已经把报告写完了。</div><div class="cnote">主句是现在时 espero，触发虚拟式；从句用 haya + p.p.（hayas terminado）表示“到说话这一刻已经完成”。与 B1 的 Espero que termines（希望你去完成）相比，这里说的是完成结果，且说话人不知道是否真的完成。</div></div></div>
+<div class="citem"><div class="cno">②</div><div class="cbody"><div class="cuse">将来某一时点之前完成</div><div class="ces">Cuando hayas terminado, avísame.</div><div class="czh"><em>&#8627;</em>你完成之后告诉我。</div><div class="cnote">cuando 指将来仍需虚拟式；完成体 hayas terminado 强调“到那个时候动作已完成”，从而明确先后。也可说 Cuando termines，但那只是指出时点、不强调“已完成”，属省略完成义的说法，不是等义替代。</div></div></div>
+<div class="citem"><div class="cno">③</div><div class="cbody"><div class="cuse">对近期过去的怀疑、否定判断</div><div class="ces">No creo que hayan llegado todavía.</div><div class="czh"><em>&#8627;</em>我不觉得他们已经到了。</div><div class="cnote">否定判断 no creo que 触发虚拟式；hayan llegado 表示动作截至现在可能已完成，但说话人不确认。改用陈述式 No creo que han llegado 只在加勒比等部分地区口语中可见，标准语法仍要求虚拟式。</div></div></div>
+<div class="citem"><div class="cno">④</div><div class="cbody"><div class="cuse">情感/评价，针对已完成的事</div><div class="ces">Me alegra que hayas encontrado trabajo.</div><div class="czh"><em>&#8627;</em>我很高兴你找到了工作。</div><div class="cnote">情感触发虚拟式；hayas encontrado 表明“找到工作”是已发生的结果。若改成 Me alegra que encuentres trabajo，情感就转为对“将来能找到”的期待，且完成义丢失——不是语义“完全不同”，而是视角改变。</div></div></div>
+<div class="citem"><div class="cno">⑤</div><div class="cbody"><div class="cuse">愿望：ojalá（事情已发生）</div><div class="ces">Ojalá hayamos acertado.</div><div class="czh"><em>&#8627;</em>但愿我们判断对了。</div><div class="cnote">ojalá 后固定虚拟式；用完成体 hayamos acertado 指“结果已经产生，只是还不知道好坏”，是对既成结果的不确定期盼。对比 Ojalá acertemos（尚未决定、盼将来做对）。</div></div></div>
+</section>
+<section class="cgroup"><div class="chead"><span class="ccode">B3</span><span class="cname">虚拟式过去未完成时 · Pretérito imperfecto de subjuntivo</span></div><div class="ccomp">规则：-ar → hablara / hablase；-er/-ir → comiera / comiese, viviera / viviese（两套词尾同义）
+不规则：fuera/fuese, tuviera/tuviese, pudiera/pudiese, supiera/supiese, hiciera/hiciese, dijera/dijese, viniera/viniese, pusiera/pusiese</div>
+<div class="citem"><div class="cno">①</div><div class="cbody"><div class="cuse">主句为过去时，从句表愿望、要求、怀疑</div><div class="ces">Quería que vinieras a la fiesta.</div><div class="czh"><em>&#8627;</em>我当时希望你来参加聚会。</div><div class="cnote">主句用过去时（quería），从句随之用过去未完成虚拟（vinieras），表示“在当时那个时间点，这个愿望还没实现”。-ra 在这里不表示“过去的过去”，只是与过去主句呼应。同类主句：esperaba / pedía / dudaba / quería。</div></div></div>
+<div class="citem"><div class="cno">②</div><div class="cbody"><div class="cuse">第二类条件句：现在或未来非现实假设</div><div class="ces">Si tuviera tiempo, viajaría más.</div><div class="czh"><em>&#8627;</em>要是我有时间，我会多旅行。</div><div class="cnote">事实是“现在没有时间”，因此 si 从句用过去未完成虚拟 tuviera，主句用简单条件式 viajaría（不是虚拟式）。这是与现在事实相反的假设，不能换成 si tengo tiempo（那表示真有可能）。</div></div></div>
+<div class="citem"><div class="cno">③</div><div class="cbody"><div class="cuse">愿望：ojalá（可能性低）</div><div class="ces">Ojalá lloviera mañana.</div><div class="czh"><em>&#8627;</em>但愿明天下雨。</div><div class="cnote">ojalá + 过去未完成虚拟，表示说话人认为实现可能性很低（明天下雨的希望不大），带一点无奈。对比 Ojalá llueva mañana 语气更乐观、更中性。</div></div></div>
+<div class="citem"><div class="cno">④</div><div class="cbody"><div class="cuse">委婉、礼貌</div><div class="ces">Quisiera hacerle una pregunta.</div><div class="czh"><em>&#8627;</em>我想向您请教一个问题。</div><div class="cnote">quisiera 是 querer 的过去未完成虚拟，用作委婉的客套形式，比 quiero 更含蓄、更有距离感；同类 pudiera / debiera / hubiera querido。对长辈、客户、面试场合常用。</div></div></div>
+<div class="citem"><div class="cno">⑤</div><div class="cbody"><div class="cuse">como si + 虚拟过去未完成（与现在事实相反）</div><div class="ces">Habla como si fuera el jefe.</div><div class="czh"><em>&#8627;</em>他说话的口气像是老板。</div><div class="cnote">como si 后不能用陈述式；与现在事实相反用过去未完成虚拟（fuera 是 ser），意为“他其实不是老板”。这里的过去虚拟在语义上是“现在非现实”，不是过去时。</div></div></div>
+<div class="citem"><div class="cno">⑥</div><div class="cbody"><div class="cuse">主句过去、先行词不确定的关系从句</div><div class="ces">Buscaba a alguien que hablara inglés.</div><div class="czh"><em>&#8627;</em>我当时在找一个会说英语的人。</div><div class="cnote">主句为过去时，且先行词 alguien 不确定、可能根本不存在，关系从句用虚拟式 hablara。若人已确定则用陈述式：Buscaba a Juan, que hablaba inglés.（我在找胡安，他会英语）。同类先行词：un libro que…, nada que…, alguien que…</div></div></div>
+</section>
+<section class="cgroup"><div class="chead"><span class="ccode">B4</span><span class="cname">虚拟式过去完成时 · Pretérito pluscuamperfecto de subjuntivo</span></div><div class="ccomp">hubiera / hubiese + p.p.（hubiera = hubiese）
+例：hubiera sabido, hubieses venido, hubiéramos terminado</div>
+<div class="citem"><div class="cno">①</div><div class="cbody"><div class="cuse">过去主句后从句，动作先于主句完成</div><div class="ces">No creía que hubieras terminado tan pronto.</div><div class="czh"><em>&#8627;</em>我当时不相信你那么快就已经做完了。</div><div class="cnote">hubieras terminado 是“过去的过去”：完成早于 no creía 那个时间点。若换成 terminara（B3），只表示“当时还没做完”，不含“已经完成”的意味，两句话义不同。</div></div></div>
+<div class="citem"><div class="cno">②</div><div class="cbody"><div class="cuse">第三类条件句：过去反事实</div><div class="ces">Si hubiera sabido la verdad, habría venido.</div><div class="czh"><em>&#8627;</em>我要是当时知道真相，就来了。</div><div class="cnote">与过去事实相反（当时并不知道，因此没来）：si 从句用 hubiera + p.p.，主句用条件完成式 habría + p.p.。拉丁美洲口语常用 Si hubiera sabido… hubiera venido（两个都用 -ra 形式），书面标准仍写 habría venido。</div></div></div>
+<div class="citem"><div class="cno">③</div><div class="cbody"><div class="cuse">未实现的愿望、遗憾：ojalá</div><div class="ces">Ojalá hubiera aceptado la oferta.</div><div class="czh"><em>&#8627;</em>真希望我当时接受了那个提议。</div><div class="cnote">ojalá + 过去完成虚拟，针对已经无法更改的过去选择表达遗憾（其实当时拒绝了）。对比 Ojalá acepte（盼将来接受）、Ojalá aceptara（对现在/将来低可能性期盼）。</div></div></div>
+<div class="citem"><div class="cno">④</div><div class="cbody"><div class="cuse">como si + 虚拟过去完成（与过去事实相反）</div><div class="ces">Habló como si hubiera estado allí.</div><div class="czh"><em>&#8627;</em>他说得好像自己当时在场。</div><div class="cnote">主句是过去时 habló，como si 后用过完成虚拟 hubiera estado，表示“他当时其实不在场”（事先到过、已离开）。若改用 estuviera，只表示“在场”与主句动作同时，无法表达“事先已完成”，也容易被读成与现在事实相反。</div></div></div>
+<div class="citem"><div class="cno">⑤</div><div class="cbody"><div class="cuse">情感、遗憾：针对过去已发生/未实现的事</div><div class="ces">Lamento que no hubieras podido venir.</div><div class="czh"><em>&#8627;</em>我很遗憾你当时没能来。</div><div class="cnote">lamento que 触发虚拟式；hubieras podido 指明“过去那次没能来”。若事情刚过去不久，也常用现在完成虚拟 Lamento que no hayas podido venir；两者都指已过去的事，只是时间视角不同。</div></div></div>
+</section>
+<section class="cgroup"><div class="chead"><span class="ccode">B5</span><span class="cname">虚拟式将来未完成时 · Futuro simple de subjuntivo</span></div><div class="ccomp">hablare, comiere, viviere
+不规则：fuere, hiciere, dijere, tuviere, pudiere, quisiere, viniere, supiere, pusiere
+现代罕用</div>
+<div class="citem"><div class="cno">①</div><div class="cbody"><div class="cuse">法律、公文、规章</div><div class="ces">El que infringiere la ley será sancionado.</div><div class="czh"><em>&#8627;</em>凡违反法律者将受处罚。</div><div class="cnote">法律条文对“假设将来发生的违法行为”固定用 -re 形式（infringiere 是 infringir），主句用将来时。现代文本一般改写为 El que infrinja la ley（B1）。</div></div></div>
+<div class="citem"><div class="cno">②</div><div class="cbody"><div class="cuse">古旧、文学的条件从句</div><div class="ces">Si alguien viniere, avísame.</div><div class="czh"><em>&#8627;</em>若有人来，请告诉我。</div><div class="cnote">古旧/正式条件句用将来虚拟 viniere（venir）；现代规范说法是 Si alguien viene, avísame.（陈述式现在时），虚拟式不再出现在真实条件句的 si 从句里。</div></div></div>
+<div class="citem"><div class="cno">③</div><div class="cbody"><div class="cuse">谚语、固定表达</div><div class="ces">Donde fueres, haz lo que vieres.</div><div class="czh"><em>&#8627;</em>入乡随俗。</div><div class="cnote">fueres 是 ir 的将来虚拟，vieres 是 ver 的将来虚拟。谚语固定沿用古体形式，不能改成现代时态，否则失去谚语的原貌。</div></div></div>
+<div class="citem"><div class="cno">④</div><div class="cbody"><div class="cuse">古体时间、让步从句</div><div class="ces">Cuando llegare el momento, lo sabrás.</div><div class="czh"><em>&#8627;</em>时机到来时你自会知道。</div><div class="cnote">古体 cuando 从句用将来虚拟 llegare（llegar）；现代说法 Cuando llegue el momento, lo sabrás（B1）。多见于古典文学、演讲、法律文本。</div></div></div>
+<div class="citem"><div class="cno">⑤</div><div class="cbody"><div class="cuse">固定表达：sea lo que fuere</div><div class="ces">Sea lo que fuere, no cambiaré de idea.</div><div class="czh"><em>&#8627;</em>不管怎样，我都不会改变主意。</div><div class="cnote">fuere 是 ser 的将来虚拟，sea lo que fuere 为固定短语，意为“无论如何、不管是什么”。现代等义说法是 sea lo que sea（用 B1 虚拟式）。</div></div></div>
+</section>
+<section class="cgroup"><div class="chead"><span class="ccode">B6</span><span class="cname">虚拟式将来完成时 · Futuro compuesto de subjuntivo</span></div><div class="ccomp">hubiere / hubieres / hubiere / hubiéremos / hubiereis / hubieren + p.p.
+例：hubiere visto, hubieres terminado
+现代罕用</div>
+<div class="citem"><div class="cno">①</div><div class="cbody"><div class="cuse">法律、公文：假设将来某时已经发生</div><div class="ces">Si alguien hubiere visto algo sospechoso, que lo comunique a la policía.</div><div class="czh"><em>&#8627;</em>若有人看到可疑情况，请通知警方。</div><div class="cnote">正式法律条件句用 hubiere + p.p.（hubiere visto），假设“到那时已经看见”。现代说法 Si alguien ha visto algo sospechoso…：si 从句用陈述式，不能写成 haya visto。</div></div></div>
+<div class="citem"><div class="cno">②</div><div class="cbody"><div class="cuse">正式条件、时间从句：到某时已经完成</div><div class="ces">Una vez que hubiere sido aprobada la ley, entrará en vigor.</div><div class="czh"><em>&#8627;</em>法律一经通过，即生效。</div><div class="cnote">una vez que 后用过完成虚拟被动 hubiere sido aprobada，表示“到通过那一刻已完成”。现代写法：Una vez que haya sido aprobada（B2）。</div></div></div>
+<div class="citem"><div class="cno">③</div><div class="cbody"><div class="cuse">古旧、文学表达：将来之前已完成</div><div class="ces">Cuando hubieres leído el documento, firmarás.</div><div class="czh"><em>&#8627;</em>你读完文件之后签字。</div><div class="cnote">古旧书面语用 hubieres leído（tú 形式），强调“读完”先于“签字”。现代说法 Cuando hayas leído el documento, firmarás。</div></div></div>
+<div class="citem"><div class="cno">④</div><div class="cbody"><div class="cuse">假设将来某时之前完成</div><div class="ces">Si para entonces hubiere terminado el trabajo, te lo enviaré.</div><div class="czh"><em>&#8627;</em>如果到那时我已经完成了工作，我会发给你。</div><div class="cnote">正式书面条件句，hubiere terminado 指“到那时之前完成”。现代说法 Si para entonces he terminado el trabajo…（陈述式现在完成）；si 从句不能用 haya terminado。</div></div></div>
+<div class="citem"><div class="cno">⑤</div><div class="cbody"><div class="cuse">法律公文：凡已经实施某行为者</div><div class="ces">El que hubiere cometido el delito será juzgado.</div><div class="czh"><em>&#8627;</em>凡已经实施犯罪者将受审判。</div><div class="cnote">法律文本用 hubiere cometido 指“行为已经实施完毕”，与 B5 的 infringiere（行为尚未发生）形成对照。现代通常改为 El que haya cometido el delito（B2）。</div></div></div>
+</section></div>
+    <p class="legend"><i></i>B5 / B6 为古体将来虚拟，只作认读，现代书面语已改用 B1 / B2。</p>
+  </section>
+
+  <footer>共 56 条 · 时态列中文名 + 西文写法 · 正文为表格视图，卡片视图可随时切换</footer>
+</div>
+<script>
+(function () {
+  var btn = document.getElementById('viewbtn');
+  if (!btn) return;
+  var wraps = [].slice.call(document.querySelectorAll('.tablewrap'));
+  var cards = [].slice.call(document.querySelectorAll('.cards'));
+  btn.addEventListener('click', function () {
+    var on = !cards[0].classList.contains('show');
+    cards.forEach(function (c) { c.classList.toggle('show', on); });
+    wraps.forEach(function (w) { w.style.display = on ? 'none' : 'block'; });
+    btn.textContent = on ? '切换表格视图' : '切换卡片视图';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>
